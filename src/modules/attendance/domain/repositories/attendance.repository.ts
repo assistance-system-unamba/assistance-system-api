@@ -36,9 +36,12 @@ export interface IAttendanceRepository {
   ): Promise<AttendanceLogEntity>;
   deleteAttendanceLog(logId: string): Promise<void>;
 
-  // Real-time support
-  getLogsSince(readerId: string, since: Date): Promise<AttendanceLogEntity[]>;
+  // Realtime / utilidades
+  findLatestLogs(limit?: number, readerId?: string): Promise<AttendanceLogEntity[]>;
+  getLastLog(readerId?: string): Promise<AttendanceLogEntity | null>;
+  getLogsSinceGlobal(since: Date, readerId?: string): Promise<AttendanceLogEntity[]>;
 
+  // Pipeline desde dispositivo
   createAttendanceLogFromDevice(data: {
     deviceUserId: string;
     recordTime: Date;

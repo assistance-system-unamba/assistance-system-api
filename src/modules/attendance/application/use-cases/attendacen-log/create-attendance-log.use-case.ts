@@ -4,7 +4,9 @@ import { AttendanceLogEntity } from '../../../domain/entities/fingerprint-reader
 
 @Injectable()
 export class CreateAttendanceLogUseCase {
+  
   constructor(@Inject(ATTENDANCE_REPOSITORY) private readonly repo: IAttendanceRepository) {}
+
   execute(readerId: string, log: Omit<AttendanceLogEntity, 'logId' | 'createAt' | 'fingerprintReaderId'>) {
     return this.repo.createAttendanceLog(readerId, log);
   }

@@ -22,7 +22,7 @@ export class AttendanceResponseMapper {
       name: reader.name,
       port: reader.port,
       location: reader.location,
-      attendanceLogs: (reader.attendanceLogs ?? []).map((l) => AttendanceResponseMapper.toLogDto(l)),
+      attendanceLogs: (reader.attendanceLogs ?? []).map(AttendanceResponseMapper.toLogDto),
     };
   }
 }
